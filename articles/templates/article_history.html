@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="card-title mt-4 ms-4 mb-3">History for "{{ article.title }}"</h2>
+<ul>
+    {% for version in versions %}
+    <li class="card-text ms-4">
+        <medium class="text-body-secondary">Last updated, {{ version.revision.date_created }} by {{ version.revision.user }}</medium>
+
+        <form action="{% url "article-revert" article.slug version.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button class="btn btn-outline-primary ms-2 mb-2" type="submit">Revert</button>
+        </form>
+        <a class="btn btn-outline-light ms-1 mb-2" type="button" href="{% url "article-preview" article.slug version.id %}">Preview</a>
+    </li>
+    {% empty %}
+    <li>No history yet.</li>
+    {% endfor %}
+</ul>
+
+<a class="btn btn-secondary ms-4 mb-2" type="button" href="{% url "article-detail" article.slug %}">Back to article</a>
+
+
+{% endblock %}
