@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% block content %}
 
@@ -15,4 +16,23 @@
         <button type="submit">Revert to this Version</button>
     </form>
 </p>
+=======
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Preview: {{ preview_article.title }}</h2>
+<p><em>Version from
+    {{ version.revision.date_created }} by
+    {{ version.revision.user }}</em></p>
+<hr>
+<div>{{ preview_article.content|safe }}</div>
+
+<p>
+    <a href="{% url "article-history" article.slug %}">Back to history</a>
+    <form action="{% url "article-revert" article.slug version.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Revert to this Version</button>
+    </form>
+</p>
+>>>>>>> 40a0b34 (update- adding the desktop app)
 {% endblock %}

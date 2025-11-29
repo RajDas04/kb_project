@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% block content %}
 
@@ -17,4 +18,25 @@
   <div><a type="button" class="btn btn-outline-primary ms-3 mb-2" href="{% url 'article-edit' article.slug %}">Edit this Article</a></div>
   <a type="button" class="btn btn-secondary ms-3 mb-1" href="{% url 'article-list' %}">Back to all articles</a>
   <a type="button" class="btn btn-outline-light ms-1 mb-1" href="{% url 'article-history' article.slug %}">View History</a>
+=======
+{% extends "base.html" %}
+{% block content %}
+
+  <h2 class="card-title mt-4 ms-4">{{ article.title }}</h2>
+  <p class="card-text ms-4"><small class="text-body-secondary">Last updated {{ article.updated_at|date:"M d, Y H:i" }}</small></p>
+  <hr>
+  <div class="card-text ms-4">{{ article.content|safe }}</div>
+  <p class="card-text ms-4">
+    Tags:
+    {% for tag in article.tags.all %}
+      <a href="{% url 'article-tag' tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% empty %}
+      No tags.
+    {% endfor %}
+  </p>
+  <hr>
+  <div><a type="button" class="btn btn-outline-primary ms-3 mb-2" href="{% url 'article-edit' article.slug %}">Edit this Article</a></div>
+  <a type="button" class="btn btn-secondary ms-3 mb-1" href="{% url 'article-list' %}">Back to all articles</a>
+  <a type="button" class="btn btn-outline-light ms-1 mb-1" href="{% url 'article-history' article.slug %}">View History</a>
+>>>>>>> 40a0b34 (update- adding the desktop app)
 {% endblock %}

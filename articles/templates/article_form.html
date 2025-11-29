@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% block content %}
 
@@ -18,4 +19,26 @@
     <a type="button" class="btn btn-outline-danger" href="{% url 'article-list' %}">Cancel</a>
 </form>
 
+=======
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+{{ form.media }}
+<h2 class="card-title mt-2 ms-4 mb-2">
+    {% if article %}Edit{% else %}Create{% endif %}
+</h2>
+
+<form class="card-title mt-2 ms-4 mb-2" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-outline-success ms-1 mb-1">
+        {% if article %}Save Changes{% else %}Create Article{% endif %}
+    </button>
+    <a type="button" class="btn btn-outline-danger" href="{% url 'article-list' %}">Cancel</a>
+</form>
+
+>>>>>>> 40a0b34 (update- adding the desktop app)
 {% endblock %}
